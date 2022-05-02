@@ -1,39 +1,27 @@
 import { PortableText } from "@portabletext/react";
-import { graphql, Link } from "gatsby";
-import * as React from "react";
+import { graphql } from "gatsby";
+import React from "react";
 import styled from "styled-components";
-import { PrimaryButton } from "../components/elements/Button";
-import { ProjectCard } from "../components/elements/ProjectCard";
-import { Form } from "../components/Form";
 import { Layout } from "../components/global/Layout";
 import { Portable } from "../components/lib/Portable";
 import { Icons } from "../lib/Icons";
 import { Logos } from "../lib/Logos";
 
-const IndexPage = ({ data }: any) => {
-  console.log(process.env.SANITY_TOKEN);
-
-  const homeContent = data.allSanityHome.nodes[0];
+const About = ({ data }: any) => {
   const about = data.allSanityAbout.nodes[0];
-
-  console.log(homeContent.text);
+  console.log(about);
 
   return (
     <Layout>
       <Container>
-        <Message>
-          <h1>{homeContent.title}</h1>
-          <PortableText value={homeContent.text} components={Portable} />
-
-          <PrimaryButton to="/about">Get a Quote</PrimaryButton>
-        </Message>
-
-        <About id="about">
+        <h1>Little bit About Us</h1>
+        <div>
           <PortableText value={about.description} components={Portable} />
-        </About>
+        </div>
+        {/* <Img src={about.image.asset.url} /> */}
 
         <Sections>
-          <Section id="services">
+          <Section>
             <TitleSection>
               <h2>Our Services</h2>
               <p>{about.descriptionServices}</p>
@@ -51,37 +39,7 @@ const IndexPage = ({ data }: any) => {
             </SectionList>
           </Section>
 
-          <Section id="process">
-            <TitleSection>
-              <h2>Our Process</h2>
-              <p>{about.descriptionProcess}</p>
-            </TitleSection>
-            <SectionList>
-              {about.process.map((process: any) => {
-                return (
-                  <Item key={process.id}>
-                    <Icons services={process.slug.current} />
-                    <h4>{process.title}</h4>
-                    <p>{process.description}</p>
-                  </Item>
-                );
-              })}
-            </SectionList>
-          </Section>
-        </Sections>
-
-        <Projects id="projects">
-          {data?.allSanityProjects.nodes.map((project: any) => {
-            return (
-              <Link to={`/project/${project.slug.current}`} key={project.id}>
-                <ProjectCard project={project} />
-              </Link>
-            );
-          })}
-        </Projects>
-
-        <Sections>
-          <Section id="partners">
+          <Section>
             <TitleSection>
               <h2>Our Partners</h2>
               <p>{about.descriptionPartners}</p>
@@ -98,8 +56,24 @@ const IndexPage = ({ data }: any) => {
               })}
             </SectionList>
           </Section>
-
-          <Section id="software">
+          <Section>
+            <TitleSection>
+              <h2>Our Process</h2>
+              <p>{about.descriptionProcess}</p>
+            </TitleSection>
+            <SectionList>
+              {about.process.map((process: any) => {
+                return (
+                  <Item key={process.id}>
+                    <Icons services={process.slug.current} />
+                    <h4>{process.title}</h4>
+                    <p>{process.description}</p>
+                  </Item>
+                );
+              })}
+            </SectionList>
+          </Section>
+          <Section>
             <TitleSection>
               <h2>Software and Frameworks We Use</h2>
               <p>{about.descriptionSoftwares}</p>
@@ -116,52 +90,15 @@ const IndexPage = ({ data }: any) => {
               })}
             </SectionList>
           </Section>
-          <Contact id="contact">
-            <h2>Contact Us</h2>
-            <Form />
-          </Contact>
         </Sections>
       </Container>
     </Layout>
   );
 };
 
-export default IndexPage;
-
-const Message = styled.section`
+const Img = styled.img`
   display: grid;
-  min-height: 60vh;
-  padding: 0 2rem;
-  padding-top: 5rem;
-  gap: 1rem;
-  text-align: center;
-  justify-content: center;
-  justify-items: center;
-  align-content: center;
-  align-items: center;
-`;
-
-const About = styled.div`
-  display: grid;
-  text-align: center;
-  justify-content: center;
-  justify-items: center;
-  align-content: center;
-  align-items: center;
-`;
-
-const Projects = styled.section`
-  display: grid;
-  padding-top: 5rem;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  a:nth-child(even) {
-    margin-top: 1.5rem;
-  }
-  a,
-  a:visited {
-    text-decoration: none;
-  }
+  width: 100%;
 `;
 
 const TitleSection = styled.div`
@@ -171,12 +108,15 @@ const TitleSection = styled.div`
 
 const Container = styled.div`
   display: grid;
-  gap: 5rem;
+  gap: 10rem;
+  h4 {
+    color: ${(props) => props.theme.colors.black};
+  }
 `;
 
 const Sections = styled.div`
   display: grid;
-  gap: 5rem;
+  gap: 10rem;
   @media (min-width: 768px) {
     section:nth-child(even) {
       margin-right: 12vw;
@@ -195,7 +135,7 @@ const Item = styled.div`
 
 const Section = styled.section`
   display: grid;
-  padding-top: 5rem;
+
   gap: 4rem;
 `;
 
@@ -208,45 +148,10 @@ const SectionList = styled.div`
   }
 `;
 
-const Contact = styled.section`
-  padding-top: 5rem;
-  display: grid;
-  gap: 4rem;
-`;
+export default About;
 
 export const query = graphql`
-  query Projects {
-    allSanityHome {
-      nodes {
-        title
-        text {
-          children {
-            text
-            marks
-            _type
-          }
-          style
-          _type
-        }
-      }
-    }
-    allSanityProjects(sort: { fields: order }) {
-      nodes {
-        id
-        title
-        industry
-        url
-        order
-        slug {
-          current
-        }
-        projectImage {
-          asset {
-            url
-          }
-        }
-      }
-    }
+  query About {
     allSanityAbout {
       nodes {
         id
