@@ -12,14 +12,16 @@ import { Helmet } from "react-helmet";
 import { Link } from "gatsby";
 import { Mail } from "../../assets/icons/Mail";
 
-export const Layout = ({ children }: any) => {
+export const Layout = ({ children, title }: any) => {
   const [mode, setMode] = useState(true);
   const [store, dispatch]: any = useReducer(SiteReducer, InitialState);
+
+  console.log(title);
 
   return (
     <>
       <Helmet>
-        <title>Home</title>
+        <title>Artticfox - {title}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link

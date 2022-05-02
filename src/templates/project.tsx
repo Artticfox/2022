@@ -7,11 +7,16 @@ import { Layout } from "../components/global/Layout";
 
 const Project = ({ data }: any) => {
   console.log(data);
-  const thisEdge = data.allSanityProject.edges.find(
-    ({ edge }: any) => edge.node.id === data.id
-  );
+  const thisEdge = data.allSanityProjects.edges.find((edge: any) => {
+    console.log(edge);
+    edge.node.id === data.id;
+  });
 
-  return <Layout title={data.title}></Layout>;
+  return (
+    <Layout title={data.sanityProjects.title}>
+      <h1>{data.sanityProjects.title}</h1>
+    </Layout>
+  );
 };
 
 const Container = styled.div`
@@ -45,6 +50,7 @@ export const pageQuery = graphql`
     sanityProjects(id: { eq: $id }) {
       id
       client
+      title
       description
       excerpt
       images {
