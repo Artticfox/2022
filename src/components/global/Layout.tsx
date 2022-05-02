@@ -10,7 +10,7 @@ import {
 import { Header } from "./Header";
 import { Helmet } from "react-helmet";
 import { Link } from "gatsby";
-import { Mail } from "../../assets/icons/mail";
+import { Mail } from "../../assets/icons/Mail";
 
 export const Layout = ({ children }: any) => {
   const [mode, setMode] = useState(true);
