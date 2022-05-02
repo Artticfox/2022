@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "gatsby";
 import { Mail } from "../../assets/icons/Mail";
 
-export const Layout = ({ children, title }: any) => {
+export const Layout = ({ children, title = "Home" }: any) => {
   const [mode, setMode] = useState(true);
   const [store, dispatch]: any = useReducer(SiteReducer, InitialState);
 
@@ -39,7 +39,7 @@ export const Layout = ({ children, title }: any) => {
 
             <Main>{children}</Main>
           </Container>
-          <LinkS to="/contact">
+          <LinkS to="/#contact">
             <Mail />
           </LinkS>
         </ThemeProvider>
