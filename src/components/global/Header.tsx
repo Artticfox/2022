@@ -1,23 +1,48 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Logo } from "../../assets/Logo";
 
 export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+  const toggleClose = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Container>
-      <LinkS to="/">
+      <LinkS to="/" onClick={toggleClose}>
         <Logo />
       </LinkS>
-      <nav>
-        <Link to="/#about">Who we are</Link>
-        <Link to="/#services">What we do</Link>
-        <Link to="/#process">How we work</Link>
-        <Link to="/#projects">Our projects</Link>
-        <Link to="/#partners">Our partners</Link>
-        <Link to="/#software">What we use</Link>
-        <Link to="/#contact">Contact Us</Link>
-      </nav>
+      <Icon onClick={toggleMenu} />
+
+      <Nav isOpen={isOpen}>
+        <Link to="/#about" onClick={toggleClose}>
+          Who we are
+        </Link>
+        <Link to="/#services" onClick={toggleClose}>
+          What we do
+        </Link>
+        <Link to="/#process" onClick={toggleClose}>
+          How we work
+        </Link>
+        <Link to="/#projects" onClick={toggleClose}>
+          Our projects
+        </Link>
+        <Link to="/#partners" onClick={toggleClose}>
+          Our partners
+        </Link>
+        <Link to="/#software" onClick={toggleClose}>
+          What we use
+        </Link>
+        <Link to="/#contact" onClick={toggleClose}>
+          Contact Us
+        </Link>
+      </Nav>
     </Container>
   );
 };
@@ -35,6 +60,17 @@ const LinkS = styled(Link)`
   }
 `;
 
+const Icon = styled.div`
+  display: grid;
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+  background: ${(props) => props.theme.colors.accent};
+  @media (min-width: 1140px) {
+    display: none;
+  }
+`;
+
 const Container = styled.header`
   display: grid;
   position: fixed;
@@ -42,10 +78,12 @@ const Container = styled.header`
   max-width: 100%;
   height: 96px;
   padding: 12px 16px;
+  z-index: 100;
   grid-auto-flow: column;
   background: ${(props) => props.theme.colors.nav.background};
   align-items: center;
   align-content: center;
+  justify-content: space-between;
   box-sizing: border-box;
 
   @media (min-width: 1140px) {
@@ -72,16 +110,28 @@ const Container = styled.header`
   a:active {
     text-decoration: underline;
   }
+`;
 
-  nav {
-    display: grid;
+const Nav = styled.nav<{ isOpen: boolean }>`
+  display: grid;
+  position: fixed;
+  gap: 2rem;
+  padding: 4rem;
+  z-index: -10;
+  width: 100%;
+  top: ${(props) => (props.isOpen ? "96px" : "-100vh")};
+  left: 0;
+  background: ${(props) => props.theme.colors.nav.background};
+  box-sizing: border-box;
+  justify-content: center;
+  justify-items: center;
+
+  transition: top 0.5s ease-in-out;
+  @media (min-width: 1140px) {
     grid-auto-flow: row;
-    gap: 16px;
     align-content: start;
-
-    @media (max-width: 1140px) {
-      grid-auto-flow: column;
-      justify-content: center;
-    }
+    position: initial;
+    padding: 0rem;
+    justify-items: start;
   }
 `;

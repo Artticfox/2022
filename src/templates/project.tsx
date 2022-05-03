@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { Layout } from "../components/global/Layout";
 
 const Project = ({ data }: any) => {
-  console.log(data);
+  console.log(data.sanityProjects.title);
   const thisEdge = data.allSanityProjects.edges.find((edge: any) => {
     console.log(edge);
     edge.node.id === data.id;

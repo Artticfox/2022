@@ -11,6 +11,7 @@ import home from "./home";
 import services from "./services";
 import softwares from "./softwares";
 import images from "./objects/images";
+import contact from "./contact";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -21,8 +22,9 @@ export default createSchema({
   types: schemaTypes.concat([
     /* Your types here! */
     projects,
-    about,
     home,
+    about,
+    contact,
     siteSettings,
     services,
     softwares,

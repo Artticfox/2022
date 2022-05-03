@@ -118,7 +118,9 @@ const IndexPage = ({ data }: any) => {
           </Section>
           <Contact id="contact">
             <h2>Contact Us</h2>
-            <Form />
+            <Row>
+              <Form />
+            </Row>
           </Contact>
         </Sections>
       </Container>
@@ -131,14 +133,17 @@ export default IndexPage;
 const Message = styled.section`
   display: grid;
   min-height: 60vh;
-  padding: 0 2rem;
-  padding-top: 5rem;
+  padding: 0rem;
+  padding-top: 8rem;
   gap: 1rem;
   text-align: center;
   justify-content: center;
   justify-items: center;
   align-content: center;
   align-items: center;
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
 `;
 
 const About = styled.div`
@@ -152,9 +157,11 @@ const About = styled.div`
 
 const Projects = styled.section`
   display: grid;
-  padding-top: 5rem;
+  padding-top: 8rem;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  }
   a:nth-child(even) {
     margin-top: 1.5rem;
   }
@@ -176,7 +183,7 @@ const Container = styled.div`
 
 const Sections = styled.div`
   display: grid;
-  gap: 5rem;
+
   @media (min-width: 768px) {
     section:nth-child(even) {
       margin-right: 12vw;
@@ -195,7 +202,7 @@ const Item = styled.div`
 
 const Section = styled.section`
   display: grid;
-  padding-top: 5rem;
+  padding-top: 8rem;
   gap: 4rem;
 `;
 
@@ -209,9 +216,13 @@ const SectionList = styled.div`
 `;
 
 const Contact = styled.section`
-  padding-top: 5rem;
+  padding-top: 8rem;
   display: grid;
   gap: 4rem;
+`;
+
+const Row = styled.div`
+  display: grid;
 `;
 
 export const query = graphql`

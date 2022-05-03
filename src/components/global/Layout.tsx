@@ -85,5 +85,7 @@ const LinkS = styled(Link)`
 
 const Main = styled.main`
   display: grid;
-  padding: 64px 32px;
+  padding: 64px 24px;
+  @media (min-width: 1140px) {
+    padding: 4rem 2rem 10rem
 `;
