@@ -90,6 +90,7 @@ export const Form = () => {
       <Input type="hidden" name="form-name" value="contact" />
 
       <TextField
+        name="name"
         id="outlined-basic"
         label="Your name"
         variant="outlined"
@@ -97,6 +98,7 @@ export const Form = () => {
       />
 
       <TextField
+        name="email"
         id="outlined-basic"
         label="Your email"
         variant="outlined"
@@ -104,17 +106,25 @@ export const Form = () => {
         required
       />
       <TextField
+        name="phone"
         id="outlined-basic"
         label="Your phone number"
         variant="outlined"
         type="phone"
         required
       />
-      <TextField id="outlined-basic" label="Your company" variant="outlined" />
+      <TextField
+        id="outlined-basic"
+        label="Your company"
+        variant="outlined"
+        name="company"
+      />
+
       <TextField
         id="outlined-basic"
         label="Type of project"
         variant="outlined"
+        name="projectType"
         select
         onChange={handleChangeType}
         value={type}
@@ -126,6 +136,7 @@ export const Form = () => {
         ))}
       </TextField>
       <TextField
+        name="budget"
         id="outlined-basic"
         label="What is your budget?"
         variant="outlined"
@@ -143,6 +154,7 @@ export const Form = () => {
       <Label>
         <TextField
           id="outlined-basic"
+          name="message"
           label="Tell us about your project"
           variant="outlined"
           type="text"
