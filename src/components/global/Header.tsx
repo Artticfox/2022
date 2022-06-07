@@ -99,7 +99,8 @@ const Container = styled.header`
   a {
     color: ${(props) => props.theme.colors.nav.content};
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
     font-weight: bold;
     font-family: ${(props) => props.theme.font.family.main};
     @media (max-width: 1140px) {
@@ -115,7 +116,7 @@ const Container = styled.header`
 const Nav = styled.nav<{ isOpen: boolean }>`
   display: grid;
   position: fixed;
-  gap: 2rem;
+  gap: 1rem;
   padding: 4rem;
   z-index: -10;
   width: 100%;
@@ -133,5 +134,7 @@ const Nav = styled.nav<{ isOpen: boolean }>`
     position: initial;
     padding: 0rem;
     justify-items: start;
+    justify-content: start;
+    padding-left: 40px;
   }
 `;

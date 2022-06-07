@@ -26,14 +26,21 @@ export default {
       },
     },
     {
-      name: "projectImage",
-      type: "image",
-      title: "Project Image",
-    },
-    {
       name: "industry",
       type: "string",
       title: "Industry",
+    },
+    {
+      name: "year",
+      type: "number",
+      title: "Year",
+    },
+    {
+      name: "projectImage",
+      title: "Project Image",
+      type: 'images',
+ 
+
     },
     {
       name: "services",
@@ -68,14 +75,113 @@ export default {
       type: "url",
       title: "Url",
     },
+    // {
+    //   name: "description",
+    //   title: "Description",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       type: "block",
+    //       marks: {
+    //         annotations: [
+    //           {
+    //             name: "link",
+    //             type: "object",
+    //             title: "Link",
+    //             fields: [
+    //               {
+    //                 name: "href",
+    //                 type: "url",
+    //                 title: "URL",
+    //               },
+    //             ],
+    //           },
+    //         ],
+    //       },
+    //     },
+    //   ],
+    // },
     {
-      name: "description",
-      type: "string",
-      title: "Description",
+      name: "challenge",
+      title: "Challenge",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          marks: {
+            annotations: [
+              {
+                name: "link",
+                type: "object",
+                title: "Link",
+                fields: [
+                  {
+                    name: "href",
+                    type: "url",
+                    title: "URL",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      name: "concept",
+      title: "Concept",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          marks: {
+            annotations: [
+              {
+                name: "link",
+                type: "object",
+                title: "Link",
+                fields: [
+                  {
+                    name: "href",
+                    type: "url",
+                    title: "URL",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      name: "solution",
+      title: "Solution",
+      type: "array",
+      of: [
+        {
+          type: "block",
+          marks: {
+            annotations: [
+              {
+                name: "link",
+                type: "object",
+                title: "Link",
+                fields: [
+                  {
+                    name: "href",
+                    type: "url",
+                    title: "URL",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
     },
     {
       name: "excerpt",
-      type: "string",
+      type: "text",
       title: "Excerpt",
     },
     {

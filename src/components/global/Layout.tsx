@@ -25,7 +25,7 @@ export const Layout = ({ children, title = "Home" }: any) => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-          href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </Helmet>
@@ -85,7 +85,8 @@ const LinkS = styled(Link)`
 
 const Main = styled.main`
   display: grid;
-  padding: 64px 24px;
+  padding: 4rem 1.5rem;
   @media (min-width: 1140px) {
-    padding: 4rem 2rem 10rem
+    padding: 4rem 4rem 10rem 2rem;
+  }
 `;

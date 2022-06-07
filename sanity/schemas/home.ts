@@ -12,8 +12,8 @@ export default {
     },
     {
       name: "text",
-      type: "array",
       title: "Text",
+      type: "array",
       of: [
         {
           type: "block",

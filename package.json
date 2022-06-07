@@ -17,6 +17,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.8.2",
     "@mui/material": "^5.6.4",
     "@mui/styled-engine-sc": "^5.6.1",
     "@portabletext/react": "^1.0.6",
@@ -24,12 +27,12 @@
     "babel-plugin-styled-components": "^2.0.7",
     "framer-motion": "^6.3.3",
     "gatsby": "^4.12.1",
-    "gatsby-image": "^3.11.0",
     "gatsby-link": "^4.13.0",
     "gatsby-plugin-google-analytics": "^4.12.1",
     "gatsby-plugin-image": "^2.12.1",
     "gatsby-plugin-manifest": "^4.12.1",
     "gatsby-plugin-react-helmet": "^5.13.0",
+    "gatsby-plugin-sanity-image": "^0.11.0",
     "gatsby-plugin-sharp": "^4.13.0",
     "gatsby-plugin-sitemap": "^5.12.1",
     "gatsby-plugin-smoothscroll": "^1.2.0",

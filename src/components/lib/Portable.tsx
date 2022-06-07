@@ -28,6 +28,7 @@ export const Portable: PortableTextComponents = {
     // Ex. 1: customizing common block types
     h1: ({ children }) => <h1>{children}</h1>,
     h2: ({ children }) => <H2>{children}</H2>,
+    h3: ({ children }) => <H3>{children}</H3>,
     blockquote: ({ children }) => <blockquote>{children}</blockquote>,
   },
 };
@@ -35,4 +36,8 @@ export const Portable: PortableTextComponents = {
 const H2 = styled.h2`
   display: grid;
   margin-bottom: 1rem;
+`;
+const H3 = styled.h3`
+  display: grid;
+  margin-bottom: 0.75rem;
 `;

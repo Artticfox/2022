@@ -1,8 +1,8 @@
 export const globalTheme = {
   font: {
     family: {
-      main: "'Open Sans', sans-serif",
-      body: "'Open Sans', sans-serif",
+      main: "'Cairo', sans-serif",
+      body: "'Cairo', sans-serif",
     },
   },
 };
@@ -17,7 +17,7 @@ export const primaryTheme = {
     white: "#fff",
     black: "#000",
     text: "#606060",
-    background: "fdfdfd",
+    background: "#fdfdfd",
     accent: "#ECC813",
   },
 
@@ -34,7 +34,7 @@ export const secondaryTheme = {
     white: "#fff",
     black: "#000",
     text: "#606060",
-    background: "fdfdfd",
+    background: "#fdfdfd",
     accent: "#ECC813",
   },
   ...globalTheme,

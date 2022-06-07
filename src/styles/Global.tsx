@@ -4,12 +4,13 @@ export const GlobalStyle = createGlobalStyle`
 
   html, body {
     margin: 0;
-    font-family: 'Lato', sans-serif;
+    font-family: ${(props) => props.theme.font.family.body};
     background-color: ${(props) => props.theme.colors.background};
     font-weight: 400;
   line-height: 1.75;
   color: #000000;
   scroll-behavior: smooth;
+  font-size: 16px;
   }
   h1,h2,h3,h4,h5,h6{
     margin: 0;
@@ -19,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
   p{
-
+    font-size: 1rem;
     margin:0;
     max-width: 700px;
     color: ${(props: any) => props.theme.colors.text};
@@ -30,20 +31,25 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
   margin-top: 0;
-  font-size: 2.202rem;
-  font-weight: 600;
+  font-size: 2.6rem;
+  font-weight: 700;
 }
 
-h2 {font-size: 1.902rem;
-  font-weight: 600;}
+h2 {font-size: 1.725rem;
+  font-weight: 700;}
 
-h3 {font-size: 1.424rem;
+h3 {font-size: 1.5rem;
+font-weight: 700;}
+
+h4 {font-size: 1.385rem;
+font-weight: 700;}
+
+h5 {font-size: 1.25rem;
 font-weight: 600;}
-
-h4 {font-size: 1.266rem;
-font-weight: 600;}
-
-h5 {font-size: 1.125rem;}
+h6{font-size: 0.875rem;
+  color: ${(props) => props.theme.colors.primary};
+  font-weight: 700;
+}
 
 small{font-size: 0.889rem;}
 `;

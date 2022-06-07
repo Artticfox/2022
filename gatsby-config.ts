@@ -15,9 +15,9 @@ const config: GatsbyConfig = {
         dataset: "production",
         token: process.env.SANITY_TOKEN,
         watchMode: true,
-        overlayDrafts: true,
       },
     },
+
     `gatsby-plugin-smoothscroll`,
     "gatsby-plugin-styled-components",
     {

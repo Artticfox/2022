@@ -15,6 +15,7 @@ const IndexPage = ({ data }: any) => {
 
   const homeContent = data.allSanityHome.nodes[0];
   const about = data.allSanityAbout.nodes[0];
+  const contact = data.allSanityContact.nodes[0];
 
   console.log(homeContent.text);
 
@@ -25,7 +26,7 @@ const IndexPage = ({ data }: any) => {
           <h1>{homeContent.title}</h1>
           <PortableText value={homeContent.text} components={Portable} />
 
-          <PrimaryButton to="/about">Get a Quote</PrimaryButton>
+          <PrimaryButton to="/#contact">Get a Quote</PrimaryButton>
         </Message>
 
         <About id="about">
@@ -43,7 +44,7 @@ const IndexPage = ({ data }: any) => {
                 return (
                   <Item key={service.id}>
                     <Icons services={service.slug.current} />
-                    <h4>{service.title}</h4>
+                    <h6>{service.title}</h6>
                     <p>{service.description}</p>
                   </Item>
                 );
@@ -61,7 +62,7 @@ const IndexPage = ({ data }: any) => {
                 return (
                   <Item key={process.id}>
                     <Icons services={process.slug.current} />
-                    <h4>{process.title}</h4>
+                    <h6>{process.title}</h6>
                     <p>{process.description}</p>
                   </Item>
                 );
@@ -91,7 +92,7 @@ const IndexPage = ({ data }: any) => {
                 return (
                   <Item key={partner.id}>
                     <Logos logo={partner.slug.current} />
-                    <h4>{partner.title}</h4>
+                    <h6>{partner.title}</h6>
                     <p>{partner.description}</p>
                   </Item>
                 );
@@ -109,7 +110,7 @@ const IndexPage = ({ data }: any) => {
                 return (
                   <Item key={software.id}>
                     <Logos logo={software.slug.current} />
-                    <h4>{software.title}</h4>
+                    <h6>{software.title}</h6>
                     <p>{software.description}</p>
                   </Item>
                 );
@@ -117,7 +118,10 @@ const IndexPage = ({ data }: any) => {
             </SectionList>
           </Section>
           <Contact id="contact">
-            <h2>Contact Us</h2>
+            <h2>{contact.title}</h2>
+            <div>
+              <PortableText value={contact.text} components={Portable} />
+            </div>
             <Row>
               <Form />
             </Row>
@@ -135,7 +139,7 @@ const Message = styled.section`
   min-height: 60vh;
   padding: 0rem;
   padding-top: 8rem;
-  gap: 1rem;
+  gap: 2rem;
   text-align: center;
   justify-content: center;
   justify-items: center;
@@ -158,13 +162,13 @@ const About = styled.div`
 const Projects = styled.section`
   display: grid;
   padding-top: 8rem;
-  gap: 2rem;
+  gap: 7rem;
   @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   }
-  a:nth-child(even) {
-    margin-top: 1.5rem;
-  }
+  /* a:nth-child(even) {
+    margin-top: 3.5rem;
+  } */
   a,
   a:visited {
     text-decoration: none;
@@ -184,14 +188,14 @@ const Container = styled.div`
 const Sections = styled.div`
   display: grid;
 
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     section:nth-child(even) {
       margin-right: 12vw;
     }
     section:nth-child(odd) {
       margin-left: 12vw;
     }
-  }
+  } */
 `;
 
 const Item = styled.div`
@@ -211,7 +215,7 @@ const SectionList = styled.div`
   gap: 4rem;
   justify-content: stretch;
   @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
   }
 `;
 
@@ -246,15 +250,31 @@ export const query = graphql`
         id
         title
         industry
-        url
         order
         slug {
           current
         }
         projectImage {
-          asset {
-            url
+          alt
+          image {
+            asset {
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+            }
           }
+        }
+      }
+    }
+    allSanityContact {
+      nodes {
+        title
+        text {
+          children {
+            text
+            marks
+            _type
+          }
+          style
+          _type
         }
       }
     }
@@ -272,7 +292,7 @@ export const query = graphql`
         }
         image {
           asset {
-            url
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
           }
         }
         descriptionServices
