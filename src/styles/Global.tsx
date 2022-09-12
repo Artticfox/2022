@@ -11,6 +11,9 @@ export const GlobalStyle = createGlobalStyle`
   color: #000000;
   scroll-behavior: smooth;
   font-size: 16px;
+  @media (min-width: 1920px) {
+    font-size: 24px;
+  }
   }
   h1,h2,h3,h4,h5,h6{
     margin: 0;

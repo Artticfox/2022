@@ -5,12 +5,92 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     {
-      allSanityProjects {
-        nodes {
-          slug {
-            current
+      allSanityProjects(sort: { fields: order }) {
+        edges {
+          node {
+            id
+            client
+            title
+            year
+            excerpt
+            industry
+            concept {
+              children {
+                text
+                marks
+                _type
+              }
+              style
+              _type
+            }
+            challenge {
+              children {
+                text
+                marks
+                _type
+              }
+              style
+              _type
+            }
+            solution {
+              children {
+                text
+                marks
+                _type
+              }
+              style
+              _type
+            }
+
+            images {
+              alt
+              image {
+                asset {
+                  gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+                }
+              }
+            }
+
+            projectImage {
+              alt
+              image {
+                asset {
+                  gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+                }
+              }
+            }
+            sentence1
+            sentence2
+            url
+
+            services {
+              id
+              title
+            }
+            softwares {
+              id
+              title
+              slug {
+                current
+              }
+            }
+
+            slug {
+              current
+            }
           }
-          id
+          next {
+            slug {
+              current
+            }
+            id
+          }
+          previous {
+            id
+            slug {
+              current
+            }
+          }
         }
       }
     }
@@ -20,11 +100,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     throw result.errors;
   }
 
-  result.data.allSanityProjects.nodes.forEach((node) => {
+  result.data.allSanityProjects.edges.forEach((edge) => {
     createPage({
-      path: `/project/${node.slug.current}`,
+      path: `/project/${edge.node.slug.current}`,
       component: path.resolve("./src/templates/project.tsx"),
-      context: { id: node.id },
+      context: { edge },
     });
   });
 };

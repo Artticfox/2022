@@ -11,6 +11,7 @@ import home from "./home";
 import services from "./services";
 import softwares from "./softwares";
 import images from "./objects/images";
+import videos from "./videos";
 import contact from "./contact";
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -29,5 +30,6 @@ export default createSchema({
     services,
     softwares,
     images,
+    videos,
   ]),
 });

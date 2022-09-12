@@ -1,3 +1,4 @@
+import { Close, Menu } from "@mui/icons-material";
 import { Link } from "gatsby";
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -18,7 +19,9 @@ export const Header = () => {
       <LinkS to="/" onClick={toggleClose}>
         <Logo />
       </LinkS>
-      <Icon onClick={toggleMenu} />
+      <Icon onClick={toggleMenu}>
+        {isOpen ? <Close fontSize="large" /> : <Menu fontSize="large" />}
+      </Icon>
 
       <Nav isOpen={isOpen}>
         <Link to="/#about" onClick={toggleClose}>
@@ -65,7 +68,11 @@ const Icon = styled.div`
   width: 40px;
   height: 40px;
   margin-right: 16px;
-  background: ${(props) => props.theme.colors.accent};
+
+  svg {
+    fill: ${(props) => props.theme.colors.white};
+  }
+
   @media (min-width: 1140px) {
     display: none;
   }

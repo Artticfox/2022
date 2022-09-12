@@ -1,7 +1,5 @@
 import React from "react";
 
-import { graphql } from "gatsby";
-
 import styled from "styled-components";
 import { Layout } from "../components/global/Layout";
 import { PortableText } from "@portabletext/react";
@@ -10,17 +8,11 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { Logos } from "../lib/Logos";
 
-const Project = ({ data }: any) => {
-  const content = data.sanityProjects;
-
-  const thisEdge = data.allSanityProjects.edges.find((edge: any) => {
-    return edge.node.id === content.id;
-  });
-
-  console.log(content);
+const Project = ({ pageContext }: any) => {
+  const content = pageContext.edge.node;
 
   return (
-    <Layout title={data.sanityProjects.title}>
+    <Layout title={content.title}>
       <Content>
         <Title>
           <h1>{content.client}</h1>
@@ -60,25 +52,26 @@ const Project = ({ data }: any) => {
             alt={content.projectImage.alt}
           />
         )}
+        <Group>
+          <Section>
+            <h6>Challenge</h6>
+            <PortableText value={content.challenge} components={Portable} />
+          </Section>
 
-        <Section>
-          <h6>Challenge</h6>
-          <PortableText value={content.challenge} components={Portable} />
-        </Section>
+          <Section>
+            <h6>Concept</h6>
+            <PortableText value={content.concept} components={Portable} />
+          </Section>
 
-        <Section>
-          <h6>Concept</h6>
-          <PortableText value={content.concept} components={Portable} />
-        </Section>
+          <Section>
+            <h6>Solution</h6>
+            <PortableText value={content.solution} components={Portable} />
+          </Section>
+        </Group>
 
-        <Section>
-          <h6>Solution</h6>
-          <PortableText value={content.solution} components={Portable} />
-        </Section>
-
-        {content.images[0]?.image.asset?.gatsbyImageData && (
+        {content.images[0]?.image?.asset?.gatsbyImageData && (
           <GatsbyImage
-            image={content.images[0].image.asset?.gatsbyImageData}
+            image={content.images[0].image.asset.gatsbyImageData}
             alt={content.images[0].alt}
           />
         )}
@@ -107,8 +100,6 @@ const Project = ({ data }: any) => {
         </Software>
         {content.images.length > 2 &&
           content.images.slice(2).map((image: any) => {
-            console.log(image);
-
             return (
               <GatsbyImage
                 image={image.image.asset?.gatsbyImageData}
@@ -116,16 +107,29 @@ const Project = ({ data }: any) => {
               />
             );
           })}
+        {/* <SanityMuxPlayer
+  // assetDocument={assetDocument}
+  // autoload={true | false}
+  // autoplay={true | false}
+  // className={string}
+  // height={number | percent}
+  // loop={true | false}
+  // muted={true | false}
+  // showControls={true | false}
+  // style={{}}
+  // width={number | percent}
+  // poster={boolean | string} // defaults to true, an URL can be provided to override the Mux asset thumbnail
+/> */}
         <NavSection>
           <div>
-            {thisEdge.previous && (
-              <a href={thisEdge.previous.slug.current}>
+            {pageContext.edge.previous && (
+              <a href={pageContext.edge.previous.slug.current}>
                 <ChevronLeft /> Prev
               </a>
             )}
           </div>
-          {thisEdge.next && (
-            <a href={thisEdge.next.slug.current}>
+          {pageContext.edge.next && (
+            <a href={pageContext.edge.next.slug.current}>
               Next <ChevronRight />
             </a>
           )}
@@ -160,11 +164,17 @@ const Column = styled.div`
 
 const Section = styled.section`
   display: grid;
-  justify-self: center;
+
   gap: 1rem;
   h6 {
     color: ${(props) => props.theme.colors.primary};
   }
+`;
+
+const Group = styled.div`
+  display: grid;
+  gap: 3rem;
+  justify-content: center;
 `;
 const Center = styled.section`
   text-align: center;
@@ -251,92 +261,3 @@ const SoftwareUl = styled(Ul)`
 `;
 
 export default Project;
-
-export const pageQuery = graphql`
-  query ProjectQuery($id: String) {
-    allSanityProjects {
-      edges {
-        node {
-          id
-        }
-        next {
-          slug {
-            current
-          }
-          id
-        }
-        previous {
-          id
-          slug {
-            current
-          }
-        }
-      }
-    }
-    sanityProjects(id: { eq: $id }) {
-      id
-      client
-      title
-      concept {
-        children {
-          text
-          marks
-          _type
-        }
-        style
-        _type
-      }
-      challenge {
-        children {
-          text
-          marks
-          _type
-        }
-        style
-        _type
-      }
-      solution {
-        children {
-          text
-          marks
-          _type
-        }
-        style
-        _type
-      }
-      excerpt
-      images {
-        alt
-        image {
-          asset {
-            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-          }
-        }
-      }
-      industry
-      projectImage {
-        alt
-        image {
-          asset {
-            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-          }
-        }
-      }
-      sentence1
-      sentence2
-      url
-      services {
-        id
-        title
-      }
-      softwares {
-        id
-        title
-        slug {
-          current
-        }
-      }
-      year
-    }
-  }
-`;

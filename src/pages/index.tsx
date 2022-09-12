@@ -33,100 +33,99 @@ const IndexPage = ({ data }: any) => {
           <PortableText value={about.description} components={Portable} />
         </About>
 
-        <Sections>
-          <Section id="services">
-            <TitleSection>
-              <h2>Our Services</h2>
-              <p>{about.descriptionServices}</p>
-            </TitleSection>
-            <SectionList>
-              {about.services.map((service: any) => {
-                return (
-                  <Item key={service.id}>
-                    <Icons services={service.slug.current} />
-                    <h6>{service.title}</h6>
-                    <p>{service.description}</p>
-                  </Item>
-                );
-              })}
-            </SectionList>
-          </Section>
+        <Section id="services">
+          <TitleSection>
+            <h2>Our Services</h2>
+            <p>{about.descriptionServices}</p>
+          </TitleSection>
+          <SectionList>
+            {about.services.map((service: any) => {
+              return (
+                <Item key={service.id}>
+                  <Icons services={service.slug.current} />
+                  <h6>{service.title}</h6>
+                  <p>{service.description}</p>
+                </Item>
+              );
+            })}
+          </SectionList>
+        </Section>
 
-          <Section id="process">
-            <TitleSection>
-              <h2>Our Process</h2>
-              <p>{about.descriptionProcess}</p>
-            </TitleSection>
-            <SectionList>
-              {about.process.map((process: any) => {
-                return (
-                  <Item key={process.id}>
-                    <Icons services={process.slug.current} />
-                    <h6>{process.title}</h6>
-                    <p>{process.description}</p>
-                  </Item>
-                );
-              })}
-            </SectionList>
-          </Section>
-        </Sections>
+        <Section id="process">
+          <TitleSection>
+            <h2>Our Process</h2>
+            <p>{about.descriptionProcess}</p>
+          </TitleSection>
+          <SectionList>
+            {about.process.map((process: any) => {
+              return (
+                <Item key={process.id}>
+                  <Icons services={process.slug.current} />
+                  <h6>{process.title}</h6>
+                  <p>{process.description}</p>
+                </Item>
+              );
+            })}
+          </SectionList>
+        </Section>
 
-        <Projects id="projects">
-          {data?.allSanityProjects.nodes.map((project: any) => {
-            return (
-              <Link to={`/project/${project.slug.current}`} key={project.id}>
-                <ProjectCard project={project} />
-              </Link>
-            );
-          })}
-        </Projects>
+        <Section>
+          <h2>Our Projects</h2>
+          <Projects id="projects">
+            {data?.allSanityProjects.nodes.map((project: any) => {
+              return (
+                <Link to={`/project/${project.slug.current}`} key={project.id}>
+                  <ProjectCard project={project} />
+                </Link>
+              );
+            })}
+          </Projects>
+        </Section>
 
-        <Sections>
-          <Section id="partners">
-            <TitleSection>
-              <h2>Our Partners</h2>
-              <p>{about.descriptionPartners}</p>
-            </TitleSection>
-            <SectionList>
-              {about.partners.map((partner: any) => {
-                return (
-                  <Item key={partner.id}>
-                    <Logos logo={partner.slug.current} />
-                    <h6>{partner.title}</h6>
-                    <p>{partner.description}</p>
-                  </Item>
-                );
-              })}
-            </SectionList>
-          </Section>
+        <Section id="partners">
+          <TitleSection>
+            <h2>Our Partners</h2>
+            <p>{about.descriptionPartners}</p>
+          </TitleSection>
+          <SectionList>
+            {about.partners.map((partner: any) => {
+              return (
+                <Item key={partner.id}>
+                  <Logos logo={partner.slug.current} />
+                  <h6>{partner.title}</h6>
+                  <p>{partner.description}</p>
+                </Item>
+              );
+            })}
+          </SectionList>
+        </Section>
 
-          <Section id="software">
-            <TitleSection>
-              <h2>Software and Frameworks We Use</h2>
-              <p>{about.descriptionSoftwares}</p>
-            </TitleSection>
-            <SectionList>
-              {about.softwares.map((software: any) => {
-                return (
-                  <Item key={software.id}>
-                    <Logos logo={software.slug.current} />
-                    <h6>{software.title}</h6>
-                    <p>{software.description}</p>
-                  </Item>
-                );
-              })}
-            </SectionList>
-          </Section>
-          <Contact id="contact">
-            <h2>{contact.title}</h2>
-            <div>
-              <PortableText value={contact.text} components={Portable} />
-            </div>
-            <Row>
-              <Form />
-            </Row>
-          </Contact>
-        </Sections>
+        <Section id="software">
+          <TitleSection>
+            <h2>Software and Frameworks We Use</h2>
+            <p>{about.descriptionSoftwares}</p>
+          </TitleSection>
+          <SectionList>
+            {about.softwares.map((software: any) => {
+              return (
+                <Item key={software.id}>
+                  <Logos logo={software.slug.current} />
+                  <h6>{software.title}</h6>
+                  <p>{software.description}</p>
+                </Item>
+              );
+            })}
+          </SectionList>
+        </Section>
+        <Contact id="contact">
+          <h2>{contact.title}</h2>
+          <div>
+            <PortableText value={contact.text} components={Portable} />
+          </div>
+          <Row>
+            <Form />
+          </Row>
+        </Contact>
       </Container>
     </Layout>
   );
@@ -138,7 +137,7 @@ const Message = styled.section`
   display: grid;
   min-height: 60vh;
   padding: 0rem;
-  padding-top: 8rem;
+
   gap: 2rem;
   text-align: center;
   justify-content: center;
@@ -161,10 +160,11 @@ const About = styled.div`
 
 const Projects = styled.section`
   display: grid;
-  padding-top: 8rem;
-  gap: 7rem;
+
+  gap: 2rem;
   @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 4.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
   /* a:nth-child(even) {
     margin-top: 3.5rem;
@@ -172,6 +172,10 @@ const Projects = styled.section`
   a,
   a:visited {
     text-decoration: none;
+  }
+  @media (min-width: 1920px) {
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 7rem;
   }
 `;
 
@@ -182,20 +186,10 @@ const TitleSection = styled.div`
 
 const Container = styled.div`
   display: grid;
-  gap: 5rem;
-`;
-
-const Sections = styled.div`
-  display: grid;
-
-  /* @media (min-width: 768px) {
-    section:nth-child(even) {
-      margin-right: 12vw;
-    }
-    section:nth-child(odd) {
-      margin-left: 12vw;
-    }
-  } */
+  gap: 8rem;
+  @media (min-width: 768px) {
+    gap: 16rem;
+  }
 `;
 
 const Item = styled.div`
@@ -206,7 +200,6 @@ const Item = styled.div`
 
 const Section = styled.section`
   display: grid;
-  padding-top: 8rem;
   gap: 4rem;
 `;
 
@@ -215,7 +208,7 @@ const SectionList = styled.div`
   gap: 4rem;
   justify-content: stretch;
   @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
 `;
 

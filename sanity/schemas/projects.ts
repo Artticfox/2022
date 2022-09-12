@@ -1,6 +1,4 @@
-import schemaTypes from "all:part:@sanity/base/schema-type";
 import { isUniqueAcrossAllDocuments } from "../lib/isUniqueAcrossAllDocuments";
-import images from "./objects/images";
 
 export default {
   name: "projects",
@@ -38,9 +36,7 @@ export default {
     {
       name: "projectImage",
       title: "Project Image",
-      type: 'images',
- 
-
+      type: "images",
     },
     {
       name: "services",
@@ -200,26 +196,12 @@ export default {
       title: "Images",
       of: [{ type: "images", name: "images" }],
     },
-    // {
-    //   name: "images",
-    //   type: "array",
-    //   title: "Images",
-    //   of: [
-    //     {
-    //       name: "image",
-    //       type: "image",
-
-    //       // is not working for some reason
-    //       // fields: [
-    //       //   {
-    //       //     type: "text",
-    //       //     name: "alt",
-    //       //     title: "Alternative text",
-    //       //   },
-    //       // ],
-    //     },
-    //   ],
-    // },
+    {
+      name: "videos",
+      type: "array",
+      title: "Videos",
+      of: [{ name: "video", title: "Video file", type: "mux.video" }],
+    },
     {
       name: "order",
       title: "Order",
