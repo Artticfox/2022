@@ -219,6 +219,7 @@ export const Logos = ({ logo }: any) => {
         );
         break;
       case "shopify":
+      case "shopify-p":
         return (
           <Svg viewBox="0 0 100 36">
             <g clipPath="url(#clip0_414_44)">
@@ -243,6 +244,7 @@ export const Logos = ({ logo }: any) => {
         );
         break;
       case "google-analytics":
+      case "google-analytics-p":
         return (
           <Svg viewBox="26 -29 120 60">
             <linearGradient
@@ -282,6 +284,7 @@ export const Logos = ({ logo }: any) => {
         );
         break;
       case "google-ads":
+      case "google-ads-p":
         return (
           <Svg>
             <g transform="matrix(.176308 0 0 .176308 7.367521 8.916185)">

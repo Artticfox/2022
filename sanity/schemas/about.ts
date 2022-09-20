@@ -1,5 +1,3 @@
-import schemaTypes from "all:part:@sanity/base/schema-type";
-
 export default {
   name: "about",
   type: "document",
@@ -65,7 +63,7 @@ export default {
       of: [
         {
           type: "reference",
-          to: [{ type: "softwares" }],
+          to: [{ type: "partners" }],
         },
       ],
     },
@@ -81,7 +79,7 @@ export default {
       of: [
         {
           type: "reference",
-          to: [{ type: "services" }],
+          to: [{ type: "process" }],
         },
       ],
     },

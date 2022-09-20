@@ -4,6 +4,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { PrimaryButton } from "../components/elements/Button";
 import { ProjectCard } from "../components/elements/ProjectCard";
+import Software from "../components/elements/Software";
 import { Form } from "../components/Form";
 import { Layout } from "../components/global/Layout";
 import { Portable } from "../components/lib/Portable";
@@ -89,12 +90,10 @@ const IndexPage = ({ data }: any) => {
           </TitleSection>
           <SectionList>
             {about.partners.map((partner: any) => {
+              console.log(partner);
+
               return (
-                <Item key={partner.id}>
-                  <Logos logo={partner.slug.current} />
-                  <h6>{partner.title}</h6>
-                  <p>{partner.description}</p>
-                </Item>
+                <Software key={partner.id} software={partner} description />
               );
             })}
           </SectionList>
@@ -108,11 +107,7 @@ const IndexPage = ({ data }: any) => {
           <SectionList>
             {about.softwares.map((software: any) => {
               return (
-                <Item key={software.id}>
-                  <Logos logo={software.slug.current} />
-                  <h6>{software.title}</h6>
-                  <p>{software.description}</p>
-                </Item>
+                <Software key={software.id} software={software} description />
               );
             })}
           </SectionList>

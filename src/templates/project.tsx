@@ -7,9 +7,14 @@ import { Portable } from "../components/lib/Portable";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { Logos } from "../lib/Logos";
+import { AdvancedVideo } from "@cloudinary/react";
+import { Cloudinary } from "@cloudinary/url-gen";
+import Video from "../components/elements/Video";
+import Software from "../components/elements/Software";
 
 const Project = ({ pageContext }: any) => {
   const content = pageContext.edge.node;
+  console.log(content);
 
   return (
     <Layout title={content.title}>
@@ -46,60 +51,85 @@ const Project = ({ pageContext }: any) => {
         <Center>
           <h4>{content.sentence1}</h4>
         </Center>
-        {content.projectImage?.asset && (
-          <GatsbyImage
-            image={content.projectImage.image.asset.gatsbyImageData}
-            alt={content.projectImage.alt}
-          />
-        )}
-        <Group>
-          <Section>
-            <h6>Challenge</h6>
-            <PortableText value={content.challenge} components={Portable} />
-          </Section>
-
-          <Section>
-            <h6>Concept</h6>
-            <PortableText value={content.concept} components={Portable} />
-          </Section>
-
-          <Section>
-            <h6>Solution</h6>
-            <PortableText value={content.solution} components={Portable} />
-          </Section>
-        </Group>
-
         {content.images[0]?.image?.asset?.gatsbyImageData && (
           <GatsbyImage
             image={content.images[0].image.asset.gatsbyImageData}
             alt={content.images[0].alt}
           />
         )}
-        {content.sentence2 && (
-          <Center>
-            <h4>{content.sentence2}</h4>
-          </Center>
+        {content.videos[0]?.video.public_id && (
+          <Video
+            publicID={content.videos[0].video.public_id}
+            key={content.videos[0].video._key}
+            description={content.videos[0].description}
+            mobile={content.videos[0].mobile}
+          />
         )}
+        <Group>
+          <Section>
+            <h5>Challenge</h5>
+            <PortableText value={content.challenge} components={Portable} />
+          </Section>
+
+          <Section>
+            <h5>Concept</h5>
+            <PortableText value={content.concept} components={Portable} />
+          </Section>
+
+          <Section>
+            <h5>Solution</h5>
+            <PortableText value={content.solution} components={Portable} />
+          </Section>
+        </Group>
         {content.images[1]?.image.asset?.gatsbyImageData && (
           <GatsbyImage
             image={content.images[1].image.asset?.gatsbyImageData}
             alt={content.images[1].alt}
           />
         )}
-        <Software>
-          <h6>What we have used</h6>
+        {content.videos[1]?.video.public_id && (
+          <Video
+            publicID={content.videos[1].video.public_id}
+            key={content.videos[1].video._key}
+            description={content.videos[1].description}
+            mobile={content.videos[1].mobile}
+          />
+        )}
+
+        {content.sentence2 && (
+          <Center>
+            <h4>{content.sentence2}</h4>
+          </Center>
+        )}
+        {content.images[2]?.image.asset?.gatsbyImageData && (
+          <GatsbyImage
+            image={content.images[2].image.asset?.gatsbyImageData}
+            alt={content.images[2].alt}
+          />
+        )}
+        {content.videos[2]?.video.public_id && (
+          <Video
+            publicID={content.videos[2].video.public_id}
+            key={content.videos[2].video._key}
+            description={content.videos[2].description}
+            mobile={content.videos[2].mobile}
+          />
+        )}
+
+        <SoftwareSection>
+          <h5>What we have used</h5>
           <SoftwareUl>
             {content.softwares.map((software: any) => {
               return (
                 <li key={software.id}>
-                  <Logos logo={software.slug.current} /> {software.title}
+                  <Software key={software.id} software={software} />
                 </li>
               );
             })}
           </SoftwareUl>
-        </Software>
-        {content.images.length > 2 &&
-          content.images.slice(2).map((image: any) => {
+        </SoftwareSection>
+        {content.images.length > 3 &&
+          content.images.slice(3).map((image: any) => {
             return (
               <GatsbyImage
                 image={image.image.asset?.gatsbyImageData}
@@ -107,19 +137,19 @@ const Project = ({ pageContext }: any) => {
               />
             );
           })}
-        {/* <SanityMuxPlayer
-  // assetDocument={assetDocument}
-  // autoload={true | false}
-  // autoplay={true | false}
-  // className={string}
-  // height={number | percent}
-  // loop={true | false}
-  // muted={true | false}
-  // showControls={true | false}
-  // style={{}}
-  // width={number | percent}
-  // poster={boolean | string} // defaults to true, an URL can be provided to override the Mux asset thumbnail
-/> */}
+        {content.videos.length > 3 &&
+          content.videos.slice(3).map((video: any) => {
+            console.log(video);
+
+            return (
+              <Video
+                publicID={video.video.public_id}
+                key={video.video._key}
+                description={video.description}
+                mobile={video.mobile}
+              />
+            );
+          })}
         <NavSection>
           <div>
             {pageContext.edge.previous && (
@@ -231,12 +261,12 @@ const Ul = styled.ul`
   }
 `;
 
-const Software = styled(Section)`
+const SoftwareSection = styled(Section)`
   display: grid;
   justify-content: center;
   gap: 1rem;
   padding: 3rem 0rem;
-  h6 {
+  h5 {
     justify-self: center;
   }
 `;

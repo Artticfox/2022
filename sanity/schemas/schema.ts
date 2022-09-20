@@ -11,8 +11,10 @@ import home from "./home";
 import services from "./services";
 import softwares from "./softwares";
 import images from "./objects/images";
-import videos from "./videos";
+import videos from "./objects/videos";
 import contact from "./contact";
+import partners from "./partners";
+import process from "./process";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -29,6 +31,8 @@ export default createSchema({
     siteSettings,
     services,
     softwares,
+    partners,
+    process,
     images,
     videos,
   ]),

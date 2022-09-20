@@ -71,32 +71,6 @@ export default {
       type: "url",
       title: "Url",
     },
-    // {
-    //   name: "description",
-    //   title: "Description",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       type: "block",
-    //       marks: {
-    //         annotations: [
-    //           {
-    //             name: "link",
-    //             type: "object",
-    //             title: "Link",
-    //             fields: [
-    //               {
-    //                 name: "href",
-    //                 type: "url",
-    //                 title: "URL",
-    //               },
-    //             ],
-    //           },
-    //         ],
-    //       },
-    //     },
-    //   ],
-    // },
     {
       name: "challenge",
       title: "Challenge",
@@ -194,14 +168,15 @@ export default {
       name: "images",
       type: "array",
       title: "Images",
-      of: [{ type: "images", name: "images" }],
+      of: [{ type: "images", name: "images", title: "Image" }],
     },
     {
       name: "videos",
       type: "array",
       title: "Videos",
-      of: [{ name: "video", title: "Video file", type: "mux.video" }],
+      of: [{ type: "videos", name: "videos", title: "Video" }],
     },
+
     {
       name: "order",
       title: "Order",

@@ -29,10 +29,10 @@ const Container = styled.div<{ image: string; left: number; top: number }>`
   align-content: end;
 
   box-shadow: 0px 2px 18px rgba(0, 0, 0, 0.1);
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     top: ${(props) => `${props.top}px`};
     left: ${(props) => `${props.left}px`};
-  }
+  } */
 `;
 
 const Content = styled.div`

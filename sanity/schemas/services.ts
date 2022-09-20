@@ -1,4 +1,3 @@
-import schemaTypes from "all:part:@sanity/base/schema-type";
 import { isUniqueAcrossAllDocuments } from "../lib/isUniqueAcrossAllDocuments";
 
 export default {

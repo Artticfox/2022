@@ -48,7 +48,7 @@ h4 {font-size: 1.385rem;
 font-weight: 700;}
 
 h5 {font-size: 1.25rem;
-font-weight: 600;}
+font-weight: 700;}
 h6{font-size: 0.875rem;
   color: ${(props) => props.theme.colors.primary};
   font-weight: 700;

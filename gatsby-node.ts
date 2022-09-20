@@ -74,7 +74,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 current
               }
             }
-
+            videos {
+              video {
+                public_id
+                _key
+              }
+              description
+              mobile
+            }
             slug {
               current
             }
