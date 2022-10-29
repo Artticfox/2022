@@ -1,14 +1,19 @@
-import schemaTypes from 'all:part:@sanity/base/schema-type'
+import schemaTypes from "all:part:@sanity/base/schema-type";
 
 export default {
-  name:"siteSettings",
-  type:"document",
-  title:"Site Settings",
-  fields:[
+  name: "siteSettings",
+  type: "document",
+  title: "Site Settings",
+  fields: [
     {
-      name:"title",
-      type:"string",
-      title:"Title"
+      name: "title",
+      type: "string",
+      title: "Title",
     },
-  ]
-}
+    {
+      name: "description",
+      type: "text",
+      title: "Description",
+    },
+  ],
+};

@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Icons = ({ services }: any) => {
-  const Switch = (services: string) => {
-    switch (services) {
+export const Icons = ({ icon }: any) => {
+  console.log(icon);
+
+  const Switch = (icon: string) => {
+    switch (icon) {
       case "advance-seo":
         return (
           <Svg
@@ -1090,7 +1092,7 @@ export const Icons = ({ services }: any) => {
     }
   };
 
-  return <>{Switch(services)}</>;
+  return <>{Switch(icon)}</>;
 };
 
 const Svg = styled.svg`

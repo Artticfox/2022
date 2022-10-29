@@ -1,4 +1,120 @@
-export default {
+export const servicesOb = {
+  name: "servicesOb",
+  type: "object",
+  title: "Services",
+  fields: [
+    {
+      name: "title",
+      type: "string",
+      title: "Title",
+    },
+    {
+      name: "description",
+      type: "text",
+      title: "Description",
+    },
+    {
+      name: "list",
+      type: "array",
+      title: "List",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "services" }],
+        },
+      ],
+    },
+  ],
+};
+
+export const partnersOb = {
+  name: "partnersOb",
+  type: "object",
+  title: "Partners",
+  fields: [
+    {
+      name: "title",
+      type: "string",
+      title: "Title",
+    },
+    {
+      name: "description",
+      type: "text",
+      title: "Description",
+    },
+    {
+      name: "list",
+      type: "array",
+      title: "List",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "partners" }],
+        },
+      ],
+    },
+  ],
+};
+
+export const processOb = {
+  name: "processOb",
+  type: "object",
+  title: "Process",
+  fields: [
+    {
+      name: "title",
+      type: "string",
+      title: "Title",
+    },
+    {
+      name: "description",
+      type: "text",
+      title: "Description",
+    },
+    {
+      name: "list",
+      type: "array",
+      title: "List",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "process" }],
+        },
+      ],
+    },
+  ],
+};
+
+export const softwaresOb = {
+  name: "softwaresOb",
+  type: "object",
+  title: "softwares",
+  fields: [
+    {
+      name: "title",
+      type: "string",
+      title: "Title",
+    },
+    {
+      name: "description",
+      type: "text",
+      title: "Description",
+    },
+    {
+      name: "list",
+      type: "array",
+      title: "List",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "softwares" }],
+        },
+      ],
+    },
+  ],
+};
+
+export const about = {
   name: "about",
   type: "document",
   title: "About",
@@ -42,67 +158,26 @@ export default {
 
     {
       name: "services",
-      type: "array",
+      type: "servicesOb",
       title: "Services",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "services" }],
-        },
-      ],
     },
-    {
-      name: "descriptionServices",
-      type: "text",
-      title: "Services Description",
-    },
+
     {
       name: "partners",
-      type: "array",
+      type: "partnersOb",
       title: "Partners",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "partners" }],
-        },
-      ],
     },
-    {
-      name: "descriptionPartners",
-      type: "text",
-      title: "Partners Description",
-    },
+
     {
       name: "process",
-      type: "array",
+      type: "processOb",
       title: "Process",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "process" }],
-        },
-      ],
     },
-    {
-      name: "descriptionProcess",
-      type: "text",
-      title: "Process Description",
-    },
+
     {
       name: "softwares",
-      type: "array",
-      title: "Softwares",
-      of: [
-        {
-          type: "reference",
-          to: [{ type: "softwares" }],
-        },
-      ],
-    },
-    {
-      name: "descriptionSoftwares",
-      type: "text",
-      title: "Software Description",
+      type: "softwaresOb",
+      title: "softwares",
     },
   ],
 };

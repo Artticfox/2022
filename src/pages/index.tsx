@@ -14,11 +14,11 @@ import { Logos } from "../lib/Logos";
 const IndexPage = ({ data }: any) => {
   console.log(process.env.SANITY_TOKEN);
 
-  const homeContent = data.allSanityHome.nodes[0];
-  const about = data.allSanityAbout.nodes[0];
-  const contact = data.allSanityContact.nodes[0];
+  const homeContent = data.sanityHome;
+  const about = data.sanityAbout;
+  const contact = data.sanityContact;
 
-  console.log(homeContent.text);
+  console.log(about);
 
   return (
     <Layout>
@@ -31,21 +31,22 @@ const IndexPage = ({ data }: any) => {
         </Message>
 
         <About id="about">
+          <h2>{about.title}</h2>
           <PortableText value={about.description} components={Portable} />
         </About>
 
         <Section id="services">
           <TitleSection>
-            <h2>Our Services</h2>
-            <p>{about.descriptionServices}</p>
+            <h2>{about.services.title}</h2>
+            <p>{about.services.description}</p>
           </TitleSection>
           <SectionList>
-            {about.services.map((service: any) => {
+            {about.services.list.map((item: any) => {
               return (
-                <Item key={service.id}>
-                  <Icons services={service.slug.current} />
-                  <h6>{service.title}</h6>
-                  <p>{service.description}</p>
+                <Item key={item.id}>
+                  <Icons icon={item.slug.current} />
+                  <h6>{item.title}</h6>
+                  <p>{item.description}</p>
                 </Item>
               );
             })}
@@ -54,16 +55,16 @@ const IndexPage = ({ data }: any) => {
 
         <Section id="process">
           <TitleSection>
-            <h2>Our Process</h2>
-            <p>{about.descriptionProcess}</p>
+            <h2>{about.process.title}</h2>
+            <p>{about.process.description}</p>
           </TitleSection>
           <SectionList>
-            {about.process.map((process: any) => {
+            {about.process.list.map((item: any) => {
               return (
-                <Item key={process.id}>
-                  <Icons services={process.slug.current} />
-                  <h6>{process.title}</h6>
-                  <p>{process.description}</p>
+                <Item key={item.id}>
+                  <Icons icon={item.slug.current} />
+                  <h6>{item.title}</h6>
+                  <p>{item.description}</p>
                 </Item>
               );
             })}
@@ -85,33 +86,40 @@ const IndexPage = ({ data }: any) => {
 
         <Section id="partners">
           <TitleSection>
-            <h2>Our Partners</h2>
-            <p>{about.descriptionPartners}</p>
+            <h2>{about.partners.title}</h2>
+            <p>{about.partners.description}</p>
           </TitleSection>
           <SectionList>
-            {about.partners.map((partner: any) => {
-              console.log(partner);
-
+            {about.partners.list.map((item: any) => {
               return (
-                <Software key={partner.id} software={partner} description />
+                <Item key={item.id}>
+                  <Logos logo={item.slug.current} />
+                  <h6>{item.title}</h6>
+                  <p>{item.description}</p>
+                </Item>
               );
             })}
           </SectionList>
         </Section>
 
-        <Section id="software">
+        <Section id="softwares">
           <TitleSection>
-            <h2>Software and Frameworks We Use</h2>
-            <p>{about.descriptionSoftwares}</p>
+            <h2>{about.softwares.title}</h2>
+            <p>{about.softwares.description}</p>
           </TitleSection>
           <SectionList>
-            {about.softwares.map((software: any) => {
+            {about.softwares.list.map((item: any) => {
               return (
-                <Software key={software.id} software={software} description />
+                <Item key={item.id}>
+                  <Logos logo={item.slug.current} />
+                  <h6>{item.title}</h6>
+                  <p>{item.description}</p>
+                </Item>
               );
             })}
           </SectionList>
         </Section>
+
         <Contact id="contact">
           <h2>{contact.title}</h2>
           <div>
@@ -149,8 +157,18 @@ const About = styled.div`
   text-align: center;
   justify-content: center;
   justify-items: center;
+  justify-self: center;
   align-content: center;
   align-items: center;
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.black};
+  padding: 32px 48px;
+  width: fit-content;
+  border-radius: 8px;
+  gap: 16px;
+  p {
+    color: ${({ theme }) => theme.colors.background};
+  }
 `;
 
 const Projects = styled.section`
@@ -219,20 +237,19 @@ const Row = styled.div`
 
 export const query = graphql`
   query Projects {
-    allSanityHome {
-      nodes {
-        title
-        text {
-          children {
-            text
-            marks
-            _type
-          }
-          style
+    sanityHome {
+      title
+      text {
+        children {
+          text
+          marks
           _type
         }
+        style
+        _type
       }
     }
+
     allSanityProjects(sort: { fields: order }) {
       nodes {
         id
@@ -252,73 +269,75 @@ export const query = graphql`
         }
       }
     }
-    allSanityContact {
-      nodes {
-        title
-        text {
-          children {
-            text
-            marks
-            _type
-          }
-          style
+    sanityContact {
+      title
+      text {
+        children {
+          text
+          marks
           _type
         }
+        style
+        _type
       }
     }
-    allSanityAbout {
-      nodes {
-        id
-        description {
-          children {
-            text
-            marks
-            _type
-          }
-          style
+
+    sanityAbout {
+      id
+      title
+      description {
+        children {
+          text
+          marks
           _type
         }
-        image {
-          asset {
-            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-          }
+        style
+        _type
+      }
+      image {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
         }
-        descriptionServices
-        services {
-          id
+      }
+      softwares {
+        title
+        description
+        list {
           title
           description
-          order
           slug {
             current
           }
         }
-        descriptionSoftwares
-        softwares {
-          id
+      }
+      services {
+        title
+        description
+        list {
           title
           description
-          order
           slug {
             current
           }
         }
-        descriptionProcess
-        process {
-          id
+      }
+      process {
+        title
+        description
+        list {
           title
           description
-          order
           slug {
             current
           }
         }
-        descriptionPartners
-        partners {
-          id
+      }
+      partners {
+        title
+        description
+        list {
           title
           description
-          order
           slug {
             current
           }

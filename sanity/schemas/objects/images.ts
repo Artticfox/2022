@@ -1,7 +1,7 @@
 export default {
   name: "images",
   type: "object",
-
+  title: "Images",
   fields: [
     {
       type: "text",

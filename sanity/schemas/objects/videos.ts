@@ -1,7 +1,7 @@
 export default {
   name: "videos",
   type: "object",
-
+  title: "Videos",
   fields: [
     {
       type: "cloudinary.asset",

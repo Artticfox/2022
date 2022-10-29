@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
-  "author": "Bora ALAP <alapbora@gmail.com>",
+  "author": "Bora ALAP <white@artticfox.com>",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "sanity start",
