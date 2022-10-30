@@ -88,7 +88,7 @@ export const processOb = {
 export const softwaresOb = {
   name: "softwaresOb",
   type: "object",
-  title: "softwares",
+  title: "Softwares",
   fields: [
     {
       name: "title",

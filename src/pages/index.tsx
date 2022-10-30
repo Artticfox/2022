@@ -27,7 +27,7 @@ const IndexPage = ({ data }: any) => {
           <h1>{homeContent.title}</h1>
           <PortableText value={homeContent.text} components={Portable} />
 
-          <PrimaryButton to="/#contact">Get a Quote</PrimaryButton>
+          <PrimaryButton to="/#contact">{homeContent.buttonText}</PrimaryButton>
         </Message>
 
         <About id="about">
@@ -248,6 +248,7 @@ export const query = graphql`
         style
         _type
       }
+      buttonText
     }
 
     allSanityProjects(sort: { fields: order }) {

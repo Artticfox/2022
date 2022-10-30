@@ -36,5 +36,10 @@ export default {
         },
       ],
     },
+    {
+      name: "buttonText",
+      type: "string",
+      title: "Button Text",
+    },
   ],
 };

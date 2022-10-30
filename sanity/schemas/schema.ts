@@ -6,7 +6,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 
 import projects from "./projects";
 import { about, servicesOb, partnersOb, processOb, softwaresOb } from "./about";
-import siteSettings from "./siteSettings";
+import { siteSettings, seo } from "./siteSettings";
 import home from "./home";
 import services from "./services";
 import softwares from "./softwares";
@@ -39,5 +39,6 @@ export default createSchema({
     partnersOb,
     processOb,
     softwaresOb,
+    seo,
   ]),
 });
