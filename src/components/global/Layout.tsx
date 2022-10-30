@@ -12,7 +12,12 @@ import { Helmet } from "react-helmet";
 import { Link } from "gatsby";
 import { Mail } from "../../assets/icons/Mail";
 
-export const Layout = ({ children, title = "Home" }: any) => {
+export const Layout = ({
+  children,
+  title = "Home",
+  description,
+  type = "page",
+}: any) => {
   const [mode, setMode] = useState(true);
   const [store, dispatch]: any = useReducer(SiteReducer, InitialState);
 
@@ -26,6 +31,18 @@ export const Layout = ({ children, title = "Home" }: any) => {
           href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <meta name="description" content={description} />
+        {/* End standard metadata tags */}
+        {/* Facebook tags */}
+        <meta property="og:type" content={type} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        {/* End Facebook tags */}
+        {/* Twitter tags */}
+        <meta name="twitter:card" content={type} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        {/* End Twitter tags */}
       </Helmet>
       <SiteContext.Provider value={{ store, dispatch }}>
         <ThemeProvider theme={store.mode ? primaryTheme : secondaryTheme}>

@@ -16,7 +16,7 @@ const Project = ({ pageContext }: any) => {
   const content = pageContext.edge.node;
 
   return (
-    <Layout title={content.title}>
+    <Layout title={content.client} type="project" description={content.excerpt}>
       <Content>
         <Title>
           <h1>{content.client}</h1>

@@ -4,7 +4,6 @@ import * as React from "react";
 import styled from "styled-components";
 import { PrimaryButton } from "../components/elements/Button";
 import { ProjectCard } from "../components/elements/ProjectCard";
-import Software from "../components/elements/Software";
 import { Form } from "../components/Form";
 import { Layout } from "../components/global/Layout";
 import { Portable } from "../components/lib/Portable";
@@ -17,7 +16,10 @@ const IndexPage = ({ data }: any) => {
   const contact = data.sanityContact;
 
   return (
-    <Layout>
+    <Layout
+      title={data.sanitySiteSettings.seo.title}
+      description={data.sanitySiteSettings.seo.description}
+    >
       <Container>
         <Message>
           <h1>{homeContent.title}</h1>
@@ -233,6 +235,12 @@ const Row = styled.div`
 
 export const query = graphql`
   query Projects {
+    sanitySiteSettings {
+      seo {
+        title
+        description
+      }
+    }
     sanityHome {
       title
       text {
@@ -246,39 +254,6 @@ export const query = graphql`
       }
       buttonText
     }
-
-    allSanityProjects(sort: { fields: order }) {
-      nodes {
-        id
-        title
-        industry
-        order
-        slug {
-          current
-        }
-        projectImage {
-          alt
-          image {
-            asset {
-              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-            }
-          }
-        }
-      }
-    }
-    sanityContact {
-      title
-      text {
-        children {
-          text
-          marks
-          _type
-        }
-        style
-        _type
-      }
-    }
-
     sanityAbout {
       id
       title
@@ -339,6 +314,38 @@ export const query = graphql`
             current
           }
         }
+      }
+    }
+
+    allSanityProjects(sort: { fields: order }) {
+      nodes {
+        id
+        title
+        industry
+        order
+        slug {
+          current
+        }
+        projectImage {
+          alt
+          image {
+            asset {
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+            }
+          }
+        }
+      }
+    }
+    sanityContact {
+      title
+      text {
+        children {
+          text
+          marks
+          _type
+        }
+        style
+        _type
       }
     }
   }
