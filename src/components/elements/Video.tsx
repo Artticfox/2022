@@ -11,8 +11,6 @@ interface Props {
 }
 
 const Video = ({ id, publicID, description, mobile }: Props) => {
-  console.log(mobile);
-
   const cld = new Cloudinary({
     cloud: {
       cloudName: "arttic-fox",

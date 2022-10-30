@@ -14,7 +14,6 @@ import Software from "../components/elements/Software";
 
 const Project = ({ pageContext }: any) => {
   const content = pageContext.edge.node;
-  console.log(content);
 
   return (
     <Layout title={content.title}>
@@ -139,8 +138,6 @@ const Project = ({ pageContext }: any) => {
           })}
         {content.videos.length > 3 &&
           content.videos.slice(3).map((video: any) => {
-            console.log(video);
-
             return (
               <Video
                 publicID={video.video.public_id}

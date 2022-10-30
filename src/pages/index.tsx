@@ -12,13 +12,9 @@ import { Icons } from "../lib/Icons";
 import { Logos } from "../lib/Logos";
 
 const IndexPage = ({ data }: any) => {
-  console.log(process.env.SANITY_TOKEN);
-
   const homeContent = data.sanityHome;
   const about = data.sanityAbout;
   const contact = data.sanityContact;
-
-  console.log(about);
 
   return (
     <Layout>

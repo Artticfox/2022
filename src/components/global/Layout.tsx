@@ -16,8 +16,6 @@ export const Layout = ({ children, title = "Home" }: any) => {
   const [mode, setMode] = useState(true);
   const [store, dispatch]: any = useReducer(SiteReducer, InitialState);
 
-  console.log(title);
-
   return (
     <>
       <Helmet>
