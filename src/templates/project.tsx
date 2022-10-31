@@ -11,6 +11,7 @@ import { AdvancedVideo } from "@cloudinary/react";
 import { Cloudinary } from "@cloudinary/url-gen";
 import Video from "../components/elements/Video";
 import Software from "../components/elements/Software";
+import { Link } from "gatsby";
 
 const Project = ({ pageContext }: any) => {
   const content = pageContext.edge.node;
@@ -38,13 +39,13 @@ const Project = ({ pageContext }: any) => {
                 </a>
               )}
             </Column>
-            <Column>
+            <ColumnR>
               <Ul>
                 {content.services.map((service: any) => {
                   return <li key={service.id}>{service.title}</li>;
                 })}
               </Ul>
-            </Column>
+            </ColumnR>
           </Row>
         </Title>
         <Center>
@@ -117,15 +118,17 @@ const Project = ({ pageContext }: any) => {
 
         <SoftwareSection>
           <h5>What we have used</h5>
-          <SoftwareUl>
-            {content.softwares.map((software: any) => {
-              return (
-                <li key={software.id}>
-                  <Software key={software.id} software={software} />
-                </li>
-              );
-            })}
-          </SoftwareUl>
+          <RowScroll>
+            <SoftwareUl>
+              {content.softwares.map((software: any) => {
+                return (
+                  <li key={software.id}>
+                    <Software key={software.id} software={software} />
+                  </li>
+                );
+              })}
+            </SoftwareUl>
+          </RowScroll>
         </SoftwareSection>
         {content.images.length > 3 &&
           content.images.slice(3).map((image: any) => {
@@ -150,21 +153,25 @@ const Project = ({ pageContext }: any) => {
         <NavSection>
           <div>
             {pageContext.edge.previous && (
-              <a href={pageContext.edge.previous.slug.current}>
+              <LinkS to={`/project/${pageContext.edge.previous.slug.current}`}>
                 <ChevronLeft /> Prev
-              </a>
+              </LinkS>
             )}
           </div>
           {pageContext.edge.next && (
-            <a href={pageContext.edge.next.slug.current}>
+            <LinkS to={`/project/${pageContext.edge.next.slug.current}`}>
               Next <ChevronRight />
-            </a>
+            </LinkS>
           )}
         </NavSection>
       </Content>
     </Layout>
   );
 };
+
+const LinkS = styled(Link)`
+  padding: 1rem;
+`;
 
 const Content = styled.div`
   display: grid;
@@ -174,10 +181,12 @@ const Content = styled.div`
 const Row = styled.section<{ highlight?: boolean }>`
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 2fr 1fr;
   padding: 1.5rem 2rem;
   gap: 1rem;
   background-color: ${(props) => (props.highlight ? "#f9fafa" : "transparent")};
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 1fr;
+  }
 `;
 
 const Column = styled.div`
@@ -186,6 +195,21 @@ const Column = styled.div`
   gap: 0.5rem;
   a {
     color: #000;
+  }
+`;
+
+const ColumnR = styled(Column)`
+  display: none;
+  @media (min-width: 768px) {
+    display: grid;
+  }
+`;
+
+const RowScroll = styled.div`
+  overflow-x: scroll;
+  scrollbar-width: none;
+  @media (min-width: 768px) {
+    overflow-x: inherit;
   }
 `;
 
@@ -273,7 +297,10 @@ const SoftwareUl = styled(Ul)`
   grid-auto-flow: column;
   grid-template-columns: repeat(auto-fit, minmax(100px, auto));
   justify-self: center;
+  align-items: baseline;
   gap: 4rem;
+  padding: 0px 16px;
+  width: max-content;
   li {
     display: grid;
     grid-auto-flow: column;
@@ -282,7 +309,7 @@ const SoftwareUl = styled(Ul)`
     align-items: center;
     svg {
       height: 40px;
-      max-width: auto;
+      width: auto;
     }
   }
 `;

@@ -39,7 +39,7 @@ export const Header = () => {
         <Link to="/#partners" onClick={toggleClose}>
           Our partners
         </Link>
-        <Link to="/#software" onClick={toggleClose}>
+        <Link to="/#softwares" onClick={toggleClose}>
           What we use
         </Link>
         <Link to="/#contact" onClick={toggleClose}>
@@ -57,9 +57,10 @@ const LinkS = styled(Link)`
   padding: 16px;
   box-sizing: border-box;
   @media (min-width: 1140px) {
+    padding: 0px;
     width: initial;
     height: fit-content;
-    padding: 40px;
+    width: 70%;
   }
 `;
 
@@ -99,8 +100,10 @@ const Container = styled.header`
     gap: 64px;
     grid-auto-flow: row;
     height: 100%;
-    padding: 32px;
+    padding: 32px 48px;
     align-content: start;
+    justify-content: stretch;
+    justify-items: center;
     box-sizing: border-box;
   }
   a {
@@ -131,17 +134,18 @@ const Nav = styled.nav<{ isOpen: boolean }>`
   left: 0;
   background: ${(props) => props.theme.colors.nav.background};
   box-sizing: border-box;
-  justify-content: center;
-  justify-items: center;
 
   transition: top 0.5s ease-in-out;
+  a {
+    width: 100%;
+    text-align: center;
+  }
   @media (min-width: 1140px) {
     grid-auto-flow: row;
     align-content: start;
     position: initial;
     padding: 0rem;
-    justify-items: start;
-    justify-content: start;
-    padding-left: 40px;
+    justify-items: center;
+    justify-content: center;
   }
 `;

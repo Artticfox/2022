@@ -177,12 +177,12 @@ const FormContainer = styled.form`
 
 const Input = styled.input`
   display: grid;
+  padding: 1rem;
 
   &[type="submit"] {
     border: none;
     background: ${(props) => props.theme.colors.black};
     color: ${(props) => props.theme.colors.white};
-    padding: 1rem;
     border-radius: 4px;
   }
 `;

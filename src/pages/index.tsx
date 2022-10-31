@@ -69,9 +69,9 @@ const IndexPage = ({ data }: any) => {
           </SectionList>
         </Section>
 
-        <Section>
+        <Section id="projects">
           <h2>Our Projects</h2>
-          <Projects id="projects">
+          <Projects>
             {data?.allSanityProjects.nodes.map((project: any) => {
               return (
                 <Link to={`/project/${project.slug.current}`} key={project.id}>
@@ -161,6 +161,7 @@ const About = styled.div`
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.black};
   padding: 32px 48px;
+  margin-top: 32px;
   width: fit-content;
   border-radius: 8px;
   gap: 16px;
@@ -197,10 +198,6 @@ const TitleSection = styled.div`
 
 const Container = styled.div`
   display: grid;
-  gap: 8rem;
-  @media (min-width: 768px) {
-    gap: 16rem;
-  }
 `;
 
 const Item = styled.div`
@@ -212,6 +209,10 @@ const Item = styled.div`
 const Section = styled.section`
   display: grid;
   gap: 4rem;
+  padding-top: 6rem;
+  @media (min-width: 768px) {
+    padding-top: 12rem;
+  }
 `;
 
 const SectionList = styled.div`

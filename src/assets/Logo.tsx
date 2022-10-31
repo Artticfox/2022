@@ -28,5 +28,5 @@ const SVG = styled.svg`
   display: grid;
   fill: ${(props) => props.theme.colors.nav.logo};
   height: 100%;
-  width: 100%;
+  width: auto;
 `;

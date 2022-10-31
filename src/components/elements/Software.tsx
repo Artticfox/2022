@@ -21,6 +21,7 @@ const Item = styled.div`
   display: grid;
   gap: 1rem;
   align-content: start;
+  width: max-content;
 `;
 
 export default Software;
