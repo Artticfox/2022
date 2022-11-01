@@ -94,6 +94,7 @@ export const Form = () => {
         id="outlined-basic"
         label="Your name"
         variant="outlined"
+        type="text"
         required
       />
 
@@ -118,6 +119,7 @@ export const Form = () => {
         label="Your company"
         variant="outlined"
         name="company"
+        type="text"
       />
 
       <TextField
@@ -183,7 +185,7 @@ const Input = styled.input`
     border: none;
     background: ${(props) => props.theme.colors.black};
     color: ${(props) => props.theme.colors.white};
-    border-radius: 4px;
+    border-radius: 0.5rem;
   }
 `;
 
