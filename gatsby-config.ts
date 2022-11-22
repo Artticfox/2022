@@ -23,6 +23,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
+        head: true,
         trackingId: "G-BR9JRE9MXN",
       },
     },
